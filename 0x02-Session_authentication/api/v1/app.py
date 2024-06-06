@@ -38,6 +38,8 @@ def filter() -> None:
                 abort(401)
             if not auth.current_user(request):
                 abort(403)
+            else:
+                auth.current_user = request.current_user(request)
 
 
 @app.errorhandler(404)
