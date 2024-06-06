@@ -9,8 +9,11 @@ class BasicAuth(Auth):
             self,
             authorization_header: str
         ) -> str:
-        if authorization_header is None or not isinstance(authorization_header, str):
+        if authorization_header is None:
+            return None
+        if not isinstance(authorization_header, str):
             return None
         if not authorization_header.startswith('Basic '):
             return None
+
         return authorization_header[6:]
