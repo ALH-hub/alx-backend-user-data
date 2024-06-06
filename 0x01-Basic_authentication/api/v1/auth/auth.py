@@ -2,6 +2,7 @@
 """authentication module"""
 from flask import request
 from typing import List, TypeVar
+import re
 
 
 class Auth:
@@ -14,6 +15,9 @@ class Auth:
             path += '/'
         if path in excluded_paths:
             return False
+        for p in excluded_paths:
+            if p[-1] == '*' and re.match(p[:-1], path):
+                return False
         return True
 
     def authorization_header(self, request=None) -> str:
