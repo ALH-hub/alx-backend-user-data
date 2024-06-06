@@ -8,8 +8,7 @@ class BasicAuth(Auth):
     """basic authentication class"""
     def extract_base64_authorization_header(
             self,
-            authorization_header: str
-        ) -> str:
+            authorization_header: str) -> str:
         """extract base64 authorization header method"""
         if authorization_header is None:
             return None
@@ -18,11 +17,11 @@ class BasicAuth(Auth):
         if not authorization_header.startswith('Basic '):
             return None
         return authorization_header[6:]
-    
+
     def decode_base64_authorization_header(
             self, base64_authorization_header: str) -> str:
         """verify validity of base64 code"""
-        if base64_authorization_header == None:
+        if base64_authorization_header is None:
             return None
         if not isinstance(base64_authorization_header, str):
             return None
